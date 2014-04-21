@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <title>Backbone.js Todos</title>
+  <link rel="stylesheet" href="css/bootstrap.css"/>
+  <script src="js/jquery-1.11.0.js"></script>
+  <script src="js/underscore.js"></script>
+  <script src="js/backbone.js"></script>
+  <script src="js/backbone.localStorage.js"></script>
+  <script src="js/bootstrap.min.js"></script>
+</head>
+
+<body>
+  <a href="#/posts/120">Post 120</a>
+  <a href="#/download/user/images/hey.gif">download gif</a>
+  <a href="#/dashboard/graph">Load Route/Action View</a>
+</body>
+
+<script type="text/javascript">
+var AppRouter=Backbone.Router.extend({
+  routes:{
+    //"*action":"defaultRoute",
+    "/posts/:id":"getPost",
+    "/download/*path":"downloadFile",
+    "/:route/:action":"loadView"
+  },
+  defaultRoute:function(actions){
+    alert(actions);
+  },
+  getPost:function(id){
+    alert(id);
+  },
+  downloadFile:function(path){
+    alert(path);
+  },
+  loadView:function(route,action){
+    alert("route:"+route+" action:"+action);
+  }
+});
+var app=new AppRouter;
+Backbone.history.start();
+</script>
+  
+
+
+</html>

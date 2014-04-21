@@ -16,6 +16,7 @@
 </body>
 <script type="text/javascript">
   var man=Backbone.Model.extend({
+    url:'data.json',
     initialize:function(){
       alert('hey,you create me!');
       this.bind("change:name",function(){
@@ -41,10 +42,43 @@
   });
   var Man= new man;
   alert(Man.aboutMe());
-  Man.set({name:''});
+  Man.set({name:'abc'});
+  Man.save();
+  var man1=new man;
+  man1.fetch({
+    url:'data.json',
+    success:function(model,response){
+      alert('success');
+      alert(model.get('name'));
+      alert(eval(response)[0].place);      
+    },
+    error:function(){
+      alert('error');
+    }
+  });
+</script>
+<script type="text/javascript">
+  var Book = Backbone.Model.extend({
+    default:{
+      title:'default'
+    },
+    initialize:function(){
+    }
 
-
-
+  });
+   var BookShelf = Backbone.Collection.extend({
+    model:Book
+   });
+   var book1=new Book({title:'book1'});
+   var book2=new Book({title:'book2'});
+   var book3=new Book({title:'book3'});
+   var bookShelf=new BookShelf;
+   bookShelf.add(book1);
+   bookShelf.add(book2);
+   bookShelf.add(book3);
+   bookShelf.each(function(book){
+    alert(book.get('title'));
+   });
 </script>
 
 
