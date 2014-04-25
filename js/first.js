@@ -28,13 +28,13 @@ $(function(){
 		},
 		initialize:function(){
 			alert("dsdfadf");
-			//this.listenTo(this.model,'change',this.render);
+			this.model.on('change',this.render,this);
 			//this.listenTo(this.model,'destroy',this.move);
 		},
 		render:function(){			
 			//this.$el.html(this.template({title:title,content:content}));
 			this.$el.html(this.template(this.model.toJSON()));
-			this.$("#todo-list").append(this.$el);
+			this.$el.appendTo($("#todo-list"));
 		},
 		clear: function() {
       		this.model.destroy();
@@ -56,32 +56,39 @@ $(function(){
 	});
 	//var view = new listview;
 	var list = Backbone.View.extend({
+		model:todo,
 		tagName:"div",
 		className:"list-group-item",
 		template:Handlebars.compile($('#item-template').html()),
 		events:{
 			"click #delete": "deleteone",
-			"click .btn":"addone"
+			"click #addbtn":"addone"
+		},
+		addone:function(){
+			alert("adsf");
 		},
 		initialize:function(){
-			//alert("list");
+			alert("initialize");
 			this.$el.html(this.template({title:"abc",content:"abccontent"}));
 			//alert(this.$el.html());
 			//this.$el.html(this.template(this.model.toJSON()));
-			this.$el.appendTo(this.$("#todo-list"));
-			//this.listenTo(this.model,'change',this.render);
+			this.$el.appendTo($("#todo-list"));
+			$("#addbtn").on("click",this.addone);
+			this.model.on('change',this.render,this);
 			//this.listenTo(this.model,'destroy',this.move);
 		},
 		render:function(){	
 			var title = this.$("#addtitle").val();
 			var content=this.$("#addcontent").val();
+			alert("render");
 			//this.$el.html(this.template({title:"title",content:"content"}));
 			//this.$el.html(this.template(this.model.toJSON()));
 			//this.$("#todo-list").append(this.$el);
 		},
 		
-		addone:function(){
-			alert("adsf");
+		
+		deleteone:function(){
+			alert("1111");
 		}
 	});
 	var a = new list;
