@@ -8,6 +8,7 @@
   <link rel="stylesheet" href="css/first.css"/>
   <script src="js/jquery-1.11.0.js"></script>
   <script src="js/underscore.js"></script>
+   <script src="js/handlebars.js"></script>
   <script src="js/backbone.js"></script>
   <script src="js/backbone.localStorage.js"></script>
   <script src="js/first.js"></script>
@@ -16,62 +17,14 @@
 
 <body>
 <div class="container">
-  <div id="todoapp">
-
-    <header>
-      <h1>赛事详情</h1>
-      
+   <header>
+      <h1>赛事详情</h1>     
     </header>
-
+  <div id="todoapp">
     <section id="main">     
-      <ul id="todo-list" class="list-group media-list">
-      <li class="list-group-item">
-          <div class="media-body">
-              <h4 class="media-heading"><%- title %></h4>
-              <div class="content"><%= content =%></div>
-              <button type="button" class="btn btn-danger pull-right" id="delete">删除</button>   
-              <button type="button" class="btn btn-info pull-right" id="edit">编辑</button>
-                    
-            </div>         
-      </li>
-            <li class="list-group-item">
-          <div class="media-body">
-              <h4 class="media-heading"><%- title %></h4>
-              <div class="content"><%= content =%></div>
-              <button type="button" class="btn btn-danger pull-right" id="delete">删除</button>   
-              <button type="button" class="btn btn-info pull-right" id="edit">编辑</button>
-                    
-            </div>         
-      </li>
-            <li class="list-group-item">
-          <div class="media-body">
-              <h4 class="media-heading"><%- title %></h4>
-              <div class="content"><%= content =%></div>
-              <button type="button" class="btn btn-danger pull-right" id="delete">删除</button>   
-              <button type="button" class="btn btn-info pull-right" id="edit">编辑</button>
-                    
-            </div>         
-      </li>
-      </ul>
+      <div id="todo-list" class="list-group media-list"></div>
     </section>
-    <div id="total" class="bg-primary">总共有<%= num %>项比赛</div>
   </div>
-
-
-
-
-  <!-- Templates -->
-   <script type="text/template" id="stats-template">
-      <div id="total" class="bg-primary">总共有<%= num %>项比赛</div>
-  </script>
-  <script type="text/template" id="item-template">
-    <div class="media-body">
-      <h4 class="media-heading"><%- title %></h4>
-      <div class="content"><%= content =%></div>
-      <button type="button" class="btn btn-danger pull-right" id="delete">删除</button>   
-      <button type="button" class="btn btn-info pull-right" id="edit">编辑</button>
-    </div>
-  </script>
   <div class="jumbotron">
     <span class="label label-default">标题</span>
     <input class="form-control" type="text" id="addtitle" placeholder="add a game">
@@ -79,6 +32,21 @@
     <textarea class="form-control" rows="3" id="addcontent"></textarea>
     <div class="btn btn-success" id="addbtn">添加</div>  
   </div>
+
+
+  <!-- Templates -->
+   <script type="text/x-handlebars-template" id="stats-template">
+      <div id="total" class="bg-primary">总共有{{num}}项比赛</div>
+  </script>
+  <script type="text/x-handlebars-template" id="item-template">
+    <div class="media-body">
+      <h4 class="media-heading">{{title}}</h4>
+      <div class="content">{{content}}</div>
+      <button type="button" class="btn btn-danger pull-right" id="delete">删除</button>   
+      <button type="button" class="btn btn-info pull-right" id="edit">编辑</button>
+    </div>
+  </script>
+ 
 </div>
 </body>
 </html>
