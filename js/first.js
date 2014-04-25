@@ -12,11 +12,14 @@ $(function(){
 			}
 		}
 	});
+	var Todos = Backbone.Model.extend({
+		model:Todo
+	});
 /*	var collection=new Backbone.Collection([
 		{num:"5",title:"a"},
 		{num:"5",title:"a"}
 	]);*/
-	var todo = new Todo;
+	var todo = new Todos;
 	var listview = Backbone.View.extend({
 		model:todo,
 		tagName:"li",
@@ -24,11 +27,11 @@ $(function(){
 		template:Handlebars.compile($('#item-template').html()),
 		events:{
 			"click #delete": "deleteone",
-			"click .btn":"addone"
 		},
 		initialize:function(){
 			alert("dsdfadf");
 			this.model.on('change',this.render,this);
+			$("#addbtn").on("click",this.addone);
 			//this.listenTo(this.model,'destroy',this.move);
 		},
 		render:function(){			
@@ -62,10 +65,10 @@ $(function(){
 		template:Handlebars.compile($('#item-template').html()),
 		events:{
 			"click #delete": "deleteone",
-			"click #addbtn":"addone"
 		},
 		addone:function(){
 			alert("adsf");
+			this.model.create({title: "abc",content:"efg"});
 		},
 		initialize:function(){
 			alert("initialize");
@@ -89,6 +92,12 @@ $(function(){
 		
 		deleteone:function(){
 			alert("1111");
+			this.$el.destroy();
+			//this.$el.html(this.template({title:"abc",content:"abccontent"}));
+			//alert(this.$el.html());
+			//this.$el.html(this.template(this.model.toJSON()));
+			//this.$el.appendTo($("#todo-list"));
+
 		}
 	});
 	var a = new list;
