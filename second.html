@@ -11,7 +11,7 @@
    <script src="js/handlebars.js"></script>
   <script src="js/backbone.js"></script>
   <script src="js/backbone.localStorage.js"></script>
-  <script src="js/first.js"></script>
+  <script src="js/second.js"></script>
   <script src="js/bootstrap.min.js"></script>
 
     <!-- Just for debugging purposes. Don't actually copy this line! -->
@@ -31,7 +31,7 @@
     </header>
   <div id="todoapp">
     <section id="main">     
-      <div id="todo-list" class="list-group media-list"></div>
+         <div id="todo-list" class="list-group media-list"></div> 
     </section>
   </div>
   <div class="jumbotron">
@@ -48,12 +48,15 @@
       <div id="total" class="bg-primary">总共有{{num}}项比赛</div>
   </script>
   <script type="text/x-handlebars-template" id="item-template">
-    <div class="media-body">
-      <h4 class="media-heading">{{title}}</h4>
-      <div class="content">{{content}}</div>
-      <button type="button" class="btn btn-danger pull-right" id="delete">删除</button>   
-      <button type="button" class="btn btn-info pull-right" id="edit">编辑</button>
-    </div>
+
+      <div class="list-group-item">
+        <div class="media-body">
+          <h4 class="media-heading">{{title}}</h4>
+          <div class="content">{{content}}</div>
+          <button type="button" class="btn btn-danger pull-right" id="delete">删除</button>   
+          <button type="button" class="btn btn-info pull-right" id="edit">编辑</button>
+        </div>
+      </div>
   </script>
  
 </div>

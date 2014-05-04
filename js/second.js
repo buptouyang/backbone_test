@@ -20,46 +20,51 @@ $(function(){
 		{num:"5",title:"a"}
 	]);*/
 	var todos = new Todos;
-	var todo = new Todo;
 	var listview = Backbone.View.extend({
-		model:todo,
-		tagName:"li",
-		className:"list-group-item",
-		template:Handlebars.compile($('#item-template').html()),
+		el: $("#todo-list"),
+		listTemplate:Handlebars.compile($('#item-template').html()),
 		events:{
 			"click #delete": "deleteone",
 		},
 		initialize:function(){
-			alert("dsdfadf");
-			this.model.on('change',this.render,this);
+			//alert("listview");
+			this.listenTo(todos, 'add', this.createone);
 			$("#addbtn").on("click",this.addone);
 			//this.listenTo(this.model,'destroy',this.move);
 		},
 		render:function(){			
 			//this.$el.html(this.template({title:title,content:content}));
-			this.$el.html(this.template(this.model.toJSON()));
-			this.$el.appendTo($("#todo-list"));
+			//this.$el.html(this.template(this.model.toJSON()));
+			//this.$el.appendTo($("#todo-list"));
+		},
+		deleteone:function(){
+			alert("deleteone");
+			this.model.remove();
 		},
 		clear: function() {
-      		this.model.destroy();
+      		//this.model.destroy();
     	},
 		addone:function(){
-			var title = this.$("#addtitle").val();
-			var content=this.$("#addcontent").val();
-			alert("click");
+			var title = $("#addtitle").val();
+			var content=$("#addcontent").val();
 			if(!title){
 				this.clear();
 			}else{
-				this.model.set({title:title,content:content});
+				var todo = new Todo({title: title,content:content,id:todos.length+1});
+				todos.add(todo);
+				//alert(todo.get("title")+" "+todo.get("content"));
+				//this.model.set({title:title,content:content});
 				//Todos.create({title: this.input.val()});
-      			this.$("#addtitle").val('');
-      			this.$("#addcontent").val('');
+      			$("#addtitle").val('');
+      			$("#addcontent").val('');
 			}
-
+		},
+		createone:function(){
+			this.$el.append(this.listTemplate({title:todos.get(todos.length).get("title"),content:todos.get(todos.length).get("content")}));
 		}
 	});
 	//var view = new listview;
-	var list = Backbone.View.extend({
+/*	var list = Backbone.View.extend({
 		model:todo,
 		tagName:"div",
 		className:"list-group-item",
@@ -100,15 +105,15 @@ $(function(){
 			//this.$el.appendTo($("#todo-list"));
 
 		}
-	});
-	var a = new list;
+	});*/
+	var a = new listview;
 
-	var artist = new Backbone.Model({
+/*	var artist = new Backbone.Model({
   firstName: "立华",
   lastName: "咸"
 });
 
 artist.set({birthday: "December 13, 1979"});
 
-alert(JSON.stringify(artist));
+alert(JSON.stringify(artist));*/
 })//end

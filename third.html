@@ -11,7 +11,7 @@
    <script src="js/handlebars.js"></script>
   <script src="js/backbone.js"></script>
   <script src="js/backbone.localStorage.js"></script>
-  <script src="js/first.js"></script>
+  <script src="js/third.js"></script>
   <script src="js/bootstrap.min.js"></script>
 
     <!-- Just for debugging purposes. Don't actually copy this line! -->
@@ -29,11 +29,15 @@
    <header>
       <h1>赛事详情</h1>     
     </header>
-  <div id="todoapp">
+<div id="todoapp"></div>
+
+ <!-- Templates -->
+<script type="text/x-handlebars-template" id="stats-template">
+  
     <section id="main">     
       <div id="todo-list" class="list-group media-list"></div>
     </section>
-  </div>
+ 
   <div class="jumbotron">
     <span class="label label-default">标题</span>
     <input class="form-control" type="text" id="addtitle" placeholder="add a game">
@@ -41,19 +45,21 @@
     <textarea class="form-control" rows="3" id="addcontent"></textarea>
     <div class="btn btn-success" id="addbtn">添加</div>  
   </div>
+</script>
 
 
-  <!-- Templates -->
-   <script type="text/x-handlebars-template" id="stats-template">
-      <div id="total" class="bg-primary">总共有{{num}}项比赛</div>
-  </script>
-  <script type="text/x-handlebars-template" id="item-template">
-    <div class="media-body">
-      <h4 class="media-heading">{{title}}</h4>
-      <div class="content">{{content}}</div>
-      <button type="button" class="btn btn-danger pull-right" id="delete">删除</button>   
-      <button type="button" class="btn btn-info pull-right" id="edit">编辑</button>
-    </div>
+
+
+ 
+  <script type="text/x-handlebars-template" id="item-template">    
+
+        <div class="media-body">
+          <h4 class="media-heading">{{title}}</h4>
+          <div class="content">{{content}}</div>
+          <button type="button" class="btn btn-danger pull-right" id="delete">删除</button>   
+          <button type="button" class="btn btn-info pull-right" id="edit">编辑</button>
+        </div>
+
   </script>
  
 </div>
